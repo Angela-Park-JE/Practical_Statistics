@@ -1,6 +1,6 @@
 # 🦀 Practical Statistics for Data Scientists 
 
-This is a repository for practice with the book 'Practical Statistics for Data Scientists- 2E, 2020, O'REILLY'.
+This is a repository for practice with the book _'Practical Statistics for Data Scientists- 2E, 2020, O'REILLY'.
 
 I decided to study this book for upgrading the knowledge and solving the curiosity about statistics.
 
@@ -8,4 +8,4 @@ I decided to study this book for upgrading the knowledge and solving the curiosi
 
 
 
-`This repository was created in Feb 28 2022, oh, Mar 01 2022 �🤔`
+`This repository was created in Feb 28 2022, oh, Mar 01 2022. 🤔`
