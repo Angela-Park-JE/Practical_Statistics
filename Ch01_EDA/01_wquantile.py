@@ -19,3 +19,18 @@ def wquantile(dataframe, column_name, weight):
 # 틀린 이유는 sort하는 컬럼과 구하는 값이 같아서 문제에서 원하는 답이 안나왔던 것이다.
 # 다시 짜보기로 했다. 
 
+def wquant(dataframe, weight_column_name, value_column_name, weight):
+    # please write the column_name with ''
+    import numpy as pd
+    
+    dataframe[weight_column_name].sort_values()
+    dataframe.reindex()
+    
+    cut = round((dataframe[weight_column_name].count()) * weight)
+    #cut = round((dataframe[column_name].count()) / weight)
+    df = dataframe[cut:-cut]
+    
+    return np.median(df[value_column_name])   
+
+# 생각을 바꾸었다고 생각했는데 그게 아니었나보다 이전과 값이 같아서, 또 틀렸다.
+
