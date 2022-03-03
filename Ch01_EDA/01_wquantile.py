@@ -34,3 +34,4 @@ def wquant(dataframe, weight_column_name, value_column_name, weight):
 
 # 생각을 바꾸었다고 생각했는데 그게 아니었나보다 이전과 값이 같아서, 또 틀렸다.
 
+# weight_column_name 의 문제이거나 dataframe을 df로 만드는 과정에 문제가 있을 지도 모르겠는데...
