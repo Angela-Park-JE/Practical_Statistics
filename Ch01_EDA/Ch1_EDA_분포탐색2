@@ -1,0 +1,177 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# CH1. EDA\n",
+    "\n",
+    "이어서 이진 데이터, 범주형 데이터 탐색을 한다.\n",
+    "\n",
+    "##### 주요 용어 정리\n",
+    "\n",
+    "> 최빈값(mode): 데이터에서 가장 자주 등장하는 범주 혹은 값\n",
+    "\n",
+    "> 기댓값(expected value): 범주에 해당하는 어떤 수치가 있을 때, 범주의 출현 확률(probability)에 따른 평균\n",
+    "\n",
+    "> 막대도표(bar chart): 각 범주의 빈도수 혹은 비율을 막대로 나타낸 그림\n",
+    "\n",
+    "> 파이그림(pie chart): 각 범주의 빈도수 혹은 비율을 원의 부채꼴 형태로 나타낸 그림\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2021-09-02T14:39:49.931441Z",
+     "iopub.status.busy": "2021-09-02T14:39:49.930827Z",
+     "iopub.status.idle": "2021-09-02T14:39:51.513586Z",
+     "shell.execute_reply": "2021-09-02T14:39:51.513066Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "# 라이브러리 불러오기\n",
+    "\n",
+    "%matplotlib inline\n",
+    "\n",
+    "from pathlib import Path\n",
+    "\n",
+    "import pandas as pd\n",
+    "import numpy as np\n",
+    "from scipy.stats import trim_mean\n",
+    "from statsmodels import robust\n",
+    "import wquantiles\n",
+    "\n",
+    "import seaborn as sns\n",
+    "import matplotlib.pylab as plt"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## 데이터 import"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2021-09-02T14:39:51.519386Z",
+     "iopub.status.busy": "2021-09-02T14:39:51.518303Z",
+     "iopub.status.idle": "2021-09-02T14:39:52.126560Z",
+     "shell.execute_reply": "2021-09-02T14:39:52.126882Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "try:\n",
+    "    import common\n",
+    "    DATA = common.dataDirectory()\n",
+    "except ImportError:\n",
+    "    DATA = Path().resolve() / 'data'"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2021-09-02T14:39:52.131370Z",
+     "iopub.status.busy": "2021-09-02T14:39:52.130900Z",
+     "iopub.status.idle": "2021-09-02T14:39:52.133711Z",
+     "shell.execute_reply": "2021-09-02T14:39:52.133326Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "AIRLINE_STATS_CSV = DATA / 'airline_stats.csv'\n",
+    "KC_TAX_CSV = DATA / 'kc_tax.csv.gz'\n",
+    "LC_LOANS_CSV = DATA / 'lc_loans.csv'\n",
+    "AIRPORT_DELAYS_CSV = DATA / 'dfw_airline.csv'\n",
+    "SP500_DATA_CSV = DATA / 'sp500_data.csv.gz'\n",
+    "SP500_SECTORS_CSV = DATA / 'sp500_sectors.csv'\n",
+    "STATE_CSV = DATA / 'state.csv'"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "데이터 가져오는 건 원래 파일 참고."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2021-09-02T14:39:52.137292Z",
+     "iopub.status.busy": "2021-09-02T14:39:52.136607Z",
+     "iopub.status.idle": "2021-09-02T14:39:52.151822Z",
+     "shell.execute_reply": "2021-09-02T14:39:52.150887Z"
+    },
+    "scrolled": true
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "    Carrier      ATC   Weather  Security    Inbound\n",
+      "0  64263.16  84856.5  11235.42    343.15  118427.82\n"
+     ]
+    }
+   ],
+   "source": [
+    "dfw = pd.read_csv('data/dfw_airline.csv')\n",
+    "print(dfw.head(10))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.5"
+  },
+  "toc": {
+   "base_numbering": 1,
+   "nav_menu": {},
+   "number_sections": true,
+   "sideBar": true,
+   "skip_h1_title": false,
+   "title_cell": "Table of Contents",
+   "title_sidebar": "Contents",
+   "toc_cell": false,
+   "toc_position": {},
+   "toc_section_display": true,
+   "toc_window_display": false
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
